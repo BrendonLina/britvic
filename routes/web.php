@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VeiculoController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
-    return "SEM QQ";
-});
+// Route::get('/', function () {
+//     // return view('welcome');
+//     return "SEM QQ";
+// });
+
+Route::get('/', [VeiculoController::class, 'index']);
