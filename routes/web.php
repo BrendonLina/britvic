@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VeiculoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,17 @@ use App\Http\Controllers\UsuarioController;
 // });
 
 Route::get('/', [VeiculoController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [LoginController::class, 'index'])->name('dashboard');
+// Route::middleware(['auth'])->group(function () {
+
+//     Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
+// });
+Route::get('/cadastrarveiculo', [VeiculoController::class, 'cadastrarVeiculo'])->name('cadastrar.veiculo');
+Route::post('/cadastrarveiculo', [VeiculoController::class, 'store'])->name('cadastrar.veiculo');
+Route::get('/listarveiculo', [VeiculoController::class, 'show'])->name('listar.veiculos');
+Route::put('/editarveiculo/{id}', [VeiculoController::class, 'update'])->name('editar.veiculo');
+Route::get('/editarveiculo/{id}', [VeiculoController::class, 'edit'])->name('editar.veiculo');
+

@@ -14,7 +14,7 @@ class VeiculoController extends Controller
      */
     public function index()
     {
-        return "Index";
+        return view('index');
     }
 
     /**
@@ -51,9 +51,11 @@ class VeiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $veiculos = Veiculo::all();
+
+        return view('listarveiculos', compact('veiculos'));
     }
 
     /**
@@ -64,7 +66,11 @@ class VeiculoController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(!$veiculo = Veiculo::find($id)){
+            return redirect()->route('listar.veiculos');
+        }
+
+        return view('editarveiculo', compact('veiculo'));
     }
 
     /**
@@ -76,7 +82,16 @@ class VeiculoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $veiculo = Veiculo::find($id);
+
+        $veiculo->modelo = $request->modelo;
+        $veiculo->marca = $request->marca;
+        $veiculo->ano = $request->ano;
+        $veiculo->placa = $request->place;
+
+        $veiculo->update();
+
+        return "Dados alterados com sucesso!";
     }
 
     /**
@@ -88,5 +103,10 @@ class VeiculoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cadastrarVeiculo(){
+
+        return view('cadastrarveiculo');
     }
 }
