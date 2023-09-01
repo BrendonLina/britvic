@@ -14,6 +14,7 @@
 
     <div class="menu-top">
         <a href="{{route('login')}}">Login</a>
+        <a href="{{route('alugar.veiculo')}}">Alugar um carro</a>
         {{-- <a href="/meusprojetos">Meus Projetos</a>
         <a href="/portfolio">Porfólio</a>
         <a href="/contato" id="botao">Contato</a> --}}

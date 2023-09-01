@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Veiculos</title>
+    <title>Usuarios</title>
 </head>
 <body>
 
-        @foreach($veiculos as $veiculo)
-            <form method="GET" action="/editarveiculo/{{ $veiculo->id }}">
+        @foreach($usuarios as $usuario)
+            <form method="GET" action="/editarusuario/{{ $usuario->id }}">
                 @csrf
                 @method('PUT')
-                <p>{{$veiculo->marca}}</p>
+                <p>{{$usuario->nome}}</p>
                 <button class="btn btn-primary" id="btn-primary" type="submit" name="editar">Editar</button>
             </form>
-            <form method="POST" action="/deletarveiculo/{{ $veiculo->id }}">
+            <form method="POST" action="/deletarusuario/{{ $usuario->id }}">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-primary" id="btn-primary" type="submit" name="deletar">Deletar</button>

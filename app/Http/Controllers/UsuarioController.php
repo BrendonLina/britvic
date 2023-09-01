@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
@@ -34,12 +35,15 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $usuario = new usuario;
-
-        $usuario->nome = $request->modelo;
-        $usuario->cpf = $request->marca;
+    
+        $usuario = new Usuario;
+        
+        $usuario->nome = $request->nome;
+        $usuario->cpf = $request->cpf;
 
         $usuario->save();
+
+        return view('cadastrarusuario');
     }
 
     /**
@@ -48,9 +52,11 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $usuarios = Usuario::all();
+
+        return view('listarusuarios', compact('usuarios'));
     }
 
     /**
@@ -61,7 +67,11 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(!$usuario = Usuario::find($id)){
+            return redirect()->route('listar.veiculos');
+        }
+
+        return view('editarusuario', compact('usuario'));
     }
 
     /**
@@ -73,7 +83,14 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usuario = Usuario::find($id);
+
+        $usuario->nome = $request->nome;
+        $usuario->cpf = $usuario->cpf;
+    
+        $usuario->update();
+
+        return "Dados alterados com sucesso!";
     }
 
     /**
@@ -84,6 +101,14 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Usuario::findOrFail($id)->delete();
+
+        return "Veiculo removido com sucesso!";
+    }
+
+    public function cadastrarUsuario()
+    {
+
+        return view('cadastrarusuario');
     }
 }

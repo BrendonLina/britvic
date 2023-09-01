@@ -16,11 +16,6 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-// Route::get('/', function () {
-//     // return view('welcome');
-//     return "SEM QQ";
-// });
-
 Route::get('/', [VeiculoController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -35,4 +30,15 @@ Route::post('/cadastrarveiculo', [VeiculoController::class, 'store'])->name('cad
 Route::get('/listarveiculo', [VeiculoController::class, 'show'])->name('listar.veiculos');
 Route::put('/editarveiculo/{id}', [VeiculoController::class, 'update'])->name('editar.veiculo');
 Route::get('/editarveiculo/{id}', [VeiculoController::class, 'edit'])->name('editar.veiculo');
+Route::delete('/deletarveiculo/{id}', [VeiculoController::class, 'destroy']);
+
+Route::post('/cadastrarusuario', [UsuarioController::class, 'store'])->name('cadastrar.usuario');
+Route::get('/cadastrarusuario', [UsuarioController::class, 'cadastrarUsuario'])->name('cadastrar.usuario');
+Route::get('/listarusuarios', [UsuarioController::class, 'show'])->name('listar.usuarios');
+Route::put('/editarusuario/{id}', [UsuarioController::class, 'update'])->name('editar.usuario');
+Route::get('/editarusuario/{id}', [UsuarioController::class, 'edit'])->name('editar.usuario');
+Route::delete('/deletarusuario/{id}', [UsuarioController::class, 'destroy']);
+
+Route::get('/alugarveiculo', [VeiculoController::class, 'alugarVeiculo'])->name('alugar.veiculo');
+Route::post('/alugarveiculo', [VeiculoController::class, 'alugarVeiculoStore'])->name('alugar.veiculo.store');
 

@@ -43,6 +43,8 @@ class VeiculoController extends Controller
         $veiculo->placa = $request->placa;
 
         $veiculo->save();
+
+        return view('cadastrarveiculo');
     }
 
     /**
@@ -87,7 +89,7 @@ class VeiculoController extends Controller
         $veiculo->modelo = $request->modelo;
         $veiculo->marca = $request->marca;
         $veiculo->ano = $request->ano;
-        $veiculo->placa = $request->place;
+        $veiculo->placa = $request->placa;
 
         $veiculo->update();
 
@@ -102,11 +104,25 @@ class VeiculoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Veiculo::findOrFail($id)->delete();
+
+        return "Veiculo removido com sucesso!";
     }
 
     public function cadastrarVeiculo(){
 
         return view('cadastrarveiculo');
+    }
+
+    public function alugarVeiculo(){
+
+        $veiculos = Veiculo::all();
+
+        return view('alugarveiculo', compact('veiculos'));
+    }
+
+    public function alugarVeiculoStore(Request $request){
+        
+        dd($request->all());
     }
 }

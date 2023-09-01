@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <title>Cadastrar veiculo</title>
 </head>
 <body>
-    <form action="{{route('dashboard')}}" method="POST">
+    <form action="{{route('cadastrar.veiculo')}}" method="POST">
         @csrf
         <input type="text" placeholder="Modelo" name="modelo">
         <input type="text" placeholder="Marca" name="marca">
