@@ -21,8 +21,8 @@
                 <button class="btn btn-primary" id="btn-primary" type="submit" name="deletar">Deletar</button>
             </form>
 
-                {{-- <p>{{ $veiculo->marca }}<a href="{{route('editar.veiculo', $veiculo->id)}}">Editar</a><a href="{{route('deletar.veiculo', $veiculo->id)}}">Excluir</a></p> --}}
-
         @endforeach
+
+        <a href="{{route('dashboard')}}">voltar</a>
 </body>
 </html>
