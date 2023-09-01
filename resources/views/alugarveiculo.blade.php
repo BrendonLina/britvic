@@ -7,7 +7,7 @@
     <title>Alugar Carro</title>
 </head>
 <body>
-    <form action="/alugarveiculo/{{ $veiculos->veiculo_id }}" method="POST">
+    <form action="{{route('alugar.veiculo.store')}}" method="POST">
         @csrf
         <input type="text" placeholder="Nome" name="nome">
         <input type="text" placeholder="CPF" name="cpf">
