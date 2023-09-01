@@ -43,7 +43,7 @@ class VeiculoController extends Controller
         $veiculo->marca = $request->marca;
         $veiculo->ano = $request->ano;
         $veiculo->placa = $request->placa;
-        $veiculo->reserva = null;
+        $veiculo->reserva = "";
 
         $veiculo->save();
 
@@ -119,21 +119,43 @@ class VeiculoController extends Controller
 
     public function alugarVeiculo(){
 
-        // $veiculos = Veiculo::all()->orderBy('id');
-        $veiculos = Veiculo::where('modelo', '<>' , null)->orderBy('modelo')->get();
+        
 
+        $veiculos = Veiculo::where('modelo', '<>' , null)->orderBy('modelo')->get();
         return view('alugarveiculo', compact('veiculos'));
     }
 
     public function alugarVeiculoStore(Request $request, $id){
         
-        $veiculo = Veiculo::find($id);
-        $veiculo->modelo = $veiculo->modelo;
-        $veiculo->marca = $veiculo->marca;
-        $veiculo->reserva = $request->reserva;
+        
 
+        // foreach($veicles as $veicle)
+        //     $veicle->id;
 
-        $veiculo->update();
+        $nome = $request->nome;
+        $cpf = $request->cpf;
+        // $reserva = $request->reserva;
+    
+        $usuario = new Usuario;
+        $usuario->nome = $nome;
+        $usuario->cpf = $cpf;
+        $usuario->veiculo_id = $request->veiculo_id;
+
+        $usuario->save();
+
+        $usuario_id = $usuario->id;
+
+        // $veiculos = new Veiculo;
+        $veiculos = Veiculo::find($id);
+        
+        $veiculos->reserva = $request->reserva;
+        $veiculos->modelo = $veiculos->modelo;
+        $veiculos->marca = $veiculos->marca;
+        $veiculos->ano = $veiculos->ano;
+        $veiculos->placa = $veiculos->placa;
+        // $veiculos->usuario_id = $usuario_id;
+        // dd($request->all());
+        $veiculos->update();
 
         return "cadastrado com sucesso";
 

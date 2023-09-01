@@ -114,7 +114,8 @@ class UsuarioController extends Controller
     public function cadastrarUsuario()
     {
         $veiculos = Veiculo::all();
+        $usuarios = Usuario::all();
 
-        return view('cadastrarusuario', compact('veiculos'));
+        return view('cadastrarusuario', compact('veiculos','usuarios'));
     }
 }

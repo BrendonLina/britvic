@@ -9,7 +9,7 @@
 <body>
 
         @foreach($usuarios as $usuario)
-            <form method="GET" action="/editarusuario/{{ $usuario->id }}">
+            <form method="POST" action="/editarusuario/{{ $usuario->id }}">
                 @csrf
                 @method('PUT')
                 <p>{{$usuario->nome}}</p>
