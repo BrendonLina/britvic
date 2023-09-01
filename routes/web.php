@@ -40,5 +40,5 @@ Route::get('/editarusuario/{id}', [UsuarioController::class, 'edit'])->name('edi
 Route::delete('/deletarusuario/{id}', [UsuarioController::class, 'destroy']);
 
 Route::get('/alugarveiculo', [VeiculoController::class, 'alugarVeiculo'])->name('alugar.veiculo');
-Route::post('/alugarveiculo', [VeiculoController::class, 'alugarVeiculoStore'])->name('alugar.veiculo.store');
+Route::post('/alugarveiculo/{id}', [VeiculoController::class, 'alugarVeiculoStore'])->name('alugar.veiculo.store');
 

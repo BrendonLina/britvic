@@ -7,18 +7,17 @@
     <title>Alugar Carro</title>
 </head>
 <body>
-    <form action="{{route('alugar.veiculo.store')}}" method="POST">
+    <form action="/alugarveiculo/{{ $veiculos->veiculo_id }}" method="POST">
         @csrf
         <input type="text" placeholder="Nome" name="nome">
         <input type="text" placeholder="CPF" name="cpf">
 
-        <select name="veiculos" id="veiculos">
+        <select name="veiculo" id="veiculo">
             @foreach($veiculos as $veiculo)
-                <option value="{{$veiculo->marca}}">{{$veiculo->marca}}</option>
-                {{-- <option value="{{$veiculo->modelo}}">{{$veiculo->modelo}}</option> --}}
+                <option value="{{$veiculo->modelo}}">{{$veiculo->modelo}} - {{$veiculo->marca}} - {{$veiculo->ano}} </option>
              @endforeach
         </select>
-        <input type="date" name="date">
+        <input type="date" name="reserva">
         <input type="submit" name="cadastrar" value="Cadastrar">
         <a href="{{route('dashboard')}}">voltar</a>
     </form>

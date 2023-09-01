@@ -5,20 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Veiculo extends Model
+class Reserva extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'marca',
-        'modelo',
-        'ano',
-        'placa'
+        'usuario_id',
+        'veiculo_id',
     ];
 
-    public function usuario(){
-
-        return $this->belongsTo('App\Usuario');
+    // public function veiculo()
+    // {
         
-        }
+    // }
+
+    // public function usuarios()
+    // {
+
+    // }
 }

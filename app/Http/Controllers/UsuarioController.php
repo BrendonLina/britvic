@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Veiculo;
 
 class UsuarioController extends Controller
 {
@@ -35,12 +36,16 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-    
+        
         $usuario = new Usuario;
         
         $usuario->nome = $request->nome;
         $usuario->cpf = $request->cpf;
-
+        $usuario->veiculo_id = $request->veiculo_id;
+        // $usuario->veiculos()->create($data);
+        // $usuario->veiculos();
+        // $usuario->veiculos()->reserva = $request->reserva;
+        
         $usuario->save();
 
         return view('cadastrarusuario');
@@ -108,7 +113,8 @@ class UsuarioController extends Controller
 
     public function cadastrarUsuario()
     {
+        $veiculos = Veiculo::all();
 
-        return view('cadastrarusuario');
+        return view('cadastrarusuario', compact('veiculos'));
     }
 }

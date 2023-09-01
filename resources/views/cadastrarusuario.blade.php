@@ -11,6 +11,12 @@
         @csrf
         <input type="text" placeholder="Nome" name="nome">
         <input type="text" placeholder="CPF" name="cpf">
+        <select name="veiculo_id" id="veiculo_id">
+            @foreach($veiculos as $veiculo)
+                <option value="{{$veiculo->id}}">{{$veiculo->modelo}} - {{$veiculo->marca}} - {{$veiculo->ano}} </option>
+             @endforeach
+        </select>
+        <input type="date" name="reserva">
         <input type="submit" name="cadastrar" value="Cadastrar">
         <a href="{{route('dashboard')}}">voltar</a>
     </form>

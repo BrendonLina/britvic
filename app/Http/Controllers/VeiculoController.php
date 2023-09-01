@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Veiculo;
+use App\Models\Usuario;
+use App\Models\Reserva;
 
 class VeiculoController extends Controller
 {
@@ -41,6 +43,7 @@ class VeiculoController extends Controller
         $veiculo->marca = $request->marca;
         $veiculo->ano = $request->ano;
         $veiculo->placa = $request->placa;
+        $veiculo->reserva = null;
 
         $veiculo->save();
 
@@ -116,13 +119,26 @@ class VeiculoController extends Controller
 
     public function alugarVeiculo(){
 
-        $veiculos = Veiculo::all();
+        // $veiculos = Veiculo::all()->orderBy('id');
+        $veiculos = Veiculo::where('modelo', '<>' , null)->orderBy('modelo')->get();
 
         return view('alugarveiculo', compact('veiculos'));
     }
 
-    public function alugarVeiculoStore(Request $request){
+    public function alugarVeiculoStore(Request $request, $id){
         
-        dd($request->all());
+        $veiculo = Veiculo::find($id);
+        $veiculo->modelo = $veiculo->modelo;
+        $veiculo->marca = $veiculo->marca;
+        $veiculo->reserva = $request->reserva;
+
+
+        $veiculo->update();
+
+        return "cadastrado com sucesso";
+
+        
+
+    
     }
 }
