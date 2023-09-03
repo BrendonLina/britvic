@@ -37,17 +37,38 @@ class VeiculoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+            'modelo' => 'required|min:3|max:20',
+            'marca' => 'min:3|max:20|required',
+            'ano' => 'numeric|required',
+            'placa' => 'required'
+        
+        ],[
+             'modelo.required' => 'modelo é obrigatório.', 
+             'modelo.min' => 'Minimo de 3 letras.', 
+             'modelo.max' => 'Maximo de 20 letras.', 
+             'marca.required' => 'marca é obrigatório.', 
+             'marca.max' => 'limite maximo de 20 caracteres.', 
+             'marca.min' => 'limite minimo de 3 caracteres.', 
+             'placa.required' => 'Por favor digite a placa.',
+             'ano.required' => 'ano é obrigatório.',
+             'ano.numeric' => 'selecione uma data.', 
+             
+        ]);
+
         $veiculo = new Veiculo;
 
         $veiculo->modelo = $request->modelo;
         $veiculo->marca = $request->marca;
         $veiculo->ano = $request->ano;
         $veiculo->placa = $request->placa;
-        $veiculo->reserva = "";
+        $veiculo->reserva = null;
 
         $veiculo->save();
 
-        return view('cadastrarveiculo');
+        // return view('cadastrarveiculo');
+        return redirect()->back()->with('success', 'Veiculo cadastrado com sucesso');
     }
 
     /**
@@ -125,6 +146,22 @@ class VeiculoController extends Controller
     }
 
     public function alugarVeiculoStore(Request $request, $id){
+
+        $this->validate($request,[
+            'nome' => 'required|min:3|max:20',
+            'cpf' => 'unique:usuarios|max:20|required',
+            'veiculo_id' => 'numeric',
+        
+        ],[
+             'nome.required' => 'nome é obrigatório.', 
+             'nome.min' => 'Minimo de 3 letras.', 
+             'nome.max' => 'Maximo de 20 letras.', 
+             'cpf.required' => 'cpf é obrigatório.', 
+             'cpf.max' => 'limite de numeros no cpf.', 
+             'cpf.unique' => 'cpf já utilizado.', 
+             'veiculo_id.numeric' => 'Por favor selecione um veiculo.', 
+             
+        ]);
         
         $nome = $request->nome;
         $cpf = $request->cpf;
@@ -150,7 +187,7 @@ class VeiculoController extends Controller
         
         $veiculos->update();
 
-        return "cadastrado com sucesso";
+        return redirect()->back()->with('success', 'Reserva realizada com sucesso');
 
         
 

@@ -12,7 +12,10 @@ class UsuarioController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
+   
+
     public function index()
     {
         //
@@ -37,6 +40,23 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         
+        $this->validate($request,[
+            'nome' => 'required|min:3|max:20',
+            'cpf' => 'unique:usuarios|max:20|required',
+            'veiculo_id' => 'numeric',
+        
+        ],[
+             'nome.required' => 'nome é obrigatório.', 
+             'nome.min' => 'Minimo de 3 letras.', 
+             'nome.max' => 'Maximo de 20 letras.', 
+             'cpf.required' => 'cpf é obrigatório.', 
+             'cpf.max' => 'limite de numeros no cpf.', 
+             'cpf.unique' => 'cpf já utilizado.', 
+             'veiculo_id.numeric' => 'Por favor selecione um veiculo.', 
+             
+        ]);
+
+
         $usuario = new Usuario;
         
         $usuario->nome = $request->nome;
@@ -45,7 +65,7 @@ class UsuarioController extends Controller
         
         $usuario->save();
 
-        return view('cadastrarusuario');
+        return redirect()->back()->with('success', 'Usuario cadastrado com sucesso');
     }
 
     /**
@@ -92,7 +112,7 @@ class UsuarioController extends Controller
     
         $usuario->update();
 
-        return "Dados alterados com sucesso!";
+        return redirect()->back()->with('success', 'Usuario alterado com sucesso');
     }
 
     /**
@@ -105,7 +125,7 @@ class UsuarioController extends Controller
     {
         Usuario::findOrFail($id)->delete();
 
-        return "Veiculo removido com sucesso!";
+        return redirect()->route('listar.usuarios')->with('success','Usuario deletado com sucesso');
     }
 
     public function cadastrarUsuario()

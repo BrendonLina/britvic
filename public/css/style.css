@@ -115,5 +115,53 @@ footer .footer{
     padding-top:100px;
 }
 
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+    
+}
+
+.container input{
+    width: 500px;
+}
+
+.container select{
+    width: 500px;
+}
+
+.container h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container2{
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    margin-top: 200px;
+    margin-left: 30%;
+    
+}
+/* 
+.container2 input{
+    width: 500px;
+}
+
+.container2 select{
+    width: 500px;
+}
+
+.container2 h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+
+
+
 
 
