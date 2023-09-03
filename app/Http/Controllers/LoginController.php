@@ -24,7 +24,6 @@ class LoginController extends Controller
             'password' => ['required']
         ]);
 
-        // $credenciais = $request->all();
 
         if(Auth::attempt($credenciais)){
 

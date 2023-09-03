@@ -42,9 +42,6 @@ class UsuarioController extends Controller
         $usuario->nome = $request->nome;
         $usuario->cpf = $request->cpf;
         $usuario->veiculo_id = $request->veiculo_id;
-        // $usuario->veiculos()->create($data);
-        // $usuario->veiculos();
-        // $usuario->veiculos()->reserva = $request->reserva;
         
         $usuario->save();
 

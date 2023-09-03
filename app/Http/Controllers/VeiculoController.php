@@ -119,7 +119,6 @@ class VeiculoController extends Controller
 
     public function alugarVeiculo(){
 
-        
 
         $veiculos = Veiculo::where('modelo', '<>' , null)->orderBy('modelo')->get();
         return view('alugarveiculo', compact('veiculos'));
@@ -127,11 +126,6 @@ class VeiculoController extends Controller
 
     public function alugarVeiculoStore(Request $request, $id){
         
-        
-
-        // foreach($veicles as $veicle)
-        //     $veicle->id;
-
         $nome = $request->nome;
         $cpf = $request->cpf;
         // $reserva = $request->reserva;
@@ -145,7 +139,6 @@ class VeiculoController extends Controller
 
         $usuario_id = $usuario->id;
 
-        // $veiculos = new Veiculo;
         $veiculos = Veiculo::find($id);
         
         $veiculos->reserva = $request->reserva;
@@ -154,7 +147,7 @@ class VeiculoController extends Controller
         $veiculos->ano = $veiculos->ano;
         $veiculos->placa = $veiculos->placa;
         // $veiculos->usuario_id = $usuario_id;
-        // dd($request->all());
+        
         $veiculos->update();
 
         return "cadastrado com sucesso";
