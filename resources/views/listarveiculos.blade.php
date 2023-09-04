@@ -9,21 +9,45 @@
 </head>
 <body>
 
-        @foreach($veiculos as $veiculo)
-            <form method="GET" action="/editarveiculo/{{ $veiculo->id }}">
-                @csrf
-                @method('PUT')
-                <p>{{$veiculo->marca}}</p>
-                <button class="btn btn-primary" id="btn-primary" type="submit" name="editar">Editar</button>
-            </form>
-            <form method="POST" action="/deletarveiculo/{{ $veiculo->id }}">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-primary" id="btn-primary" type="submit" name="deletar">Deletar</button>
-            </form>
+    @if(session('danger'))
+          <div class="alert alert-danger">
+              {{session('danger')}}
+          </div>
+      @endif
 
-        @endforeach
+      @if(session('success'))
+          <div class="alert alert-success">
+              {{session('success')}}
+          </div>
+      @endif
+      
+    @foreach($veiculos as $veiculo)
+        <form method="GET" action="/editarveiculo/{{ $veiculo->id }}">
+            @csrf
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Deletar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{$veiculo->id}}</th>
+                        <td>{{$veiculo->marca}} - {{$veiculo->modelo}}</td>
+                        <td><button type="submit" name="editar" class="btn btn-warning">Editar</button></td>
+                    </form>
+                    <form method="POST" action="/deletarveiculo/{{ $veiculo->id }}">
+                        @csrf
+                        @method('DELETE')
 
-        <a href="{{route('dashboard')}}">voltar</a>
+                        <td><button type="submit" name="excluir" class="btn btn-danger">Deletar</button></td>
+                    </form>
+                    </tr>
+                    </tbody>
+                </table>
+    @endforeach
 </body>
 </html>

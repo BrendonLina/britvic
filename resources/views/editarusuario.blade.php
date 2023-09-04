@@ -54,15 +54,3 @@
     </body>
     </html>
     
-    {{-- <form action="#" method="POST">
-        @csrf
-        @method('PUT')
-
-        <input type="text" placeholder="Nome" name="nome" value="{{ $usuario->nome }}">
-        <input type="text" placeholder="CPF" name="cpf" value="{{ $usuario->cpf }}" disabled="">
-    
-        <input type="submit" name="cadastrar" value="Alterar">
-        <a href="{{route('dashboard')}}">voltar</a>
-    </form>
-</body>
-</html> --}}

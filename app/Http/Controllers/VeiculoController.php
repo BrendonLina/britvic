@@ -117,7 +117,7 @@ class VeiculoController extends Controller
 
         $veiculo->update();
 
-        return "Dados alterados com sucesso!";
+        return redirect()->back()->with('success', 'Veiculo alterado com sucesso');
     }
 
     /**

@@ -113,27 +113,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
   </html>
-
-
-{{-- <body>
-    @foreach ($veiculos as $veiculo )
-        
-    <form action="/alugarveiculo/{{$veiculo->id}}" method="POST">
-    @endforeach
-       
-        @csrf
-        @method('PUT')
-        <input type="text" placeholder="Nome" name="nome">
-        <input type="text" placeholder="CPF" name="cpf">
-
-        <select name="veiculo_id" id="veiculo_id">
-            @foreach($veiculos as $veiculo)
-                <option value="{{$veiculo->id}}">{{$veiculo->modelo}} - {{$veiculo->marca}} - {{$veiculo->ano}} </option>
-             @endforeach
-        </select>
-        <input type="date" name="reserva">
-        <input type="submit" name="cadastrar" value="Cadastrar">
-        <a href="{{route('dashboard')}}">voltar</a>
-    </form>
-</body>
-</html> --}}
