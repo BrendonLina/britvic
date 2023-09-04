@@ -18,7 +18,17 @@ class LoginController extends Controller
 
     public function dashboard(Request $request){
 
-  
+        $this->validate($request,[
+            'email' => 'required',
+            'password' => 'required',
+        
+        ],[
+             'email.required' => 'nome é obrigatório.', 
+             'password.required' => 'Senha é obrigatoria.', 
+             
+        ]);
+
+
         $credenciais = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required']
@@ -36,12 +46,12 @@ class LoginController extends Controller
             
             // return redirect()->intended('dashboard');
 
-            // return redirect()->route('dashboard')->with('success', 'Logado');
             return view('dashboard');
             
         } else{
-            // return redirect()->back()->with('erro', 'Email ou senha inválida.');
-            dd("não logou");
+
+            return redirect()->back()->with('danger', 'Email ou senha inválida.');
+    
         }
 
     }

@@ -105,11 +105,30 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate($request,[
+            'nome' => 'required|min:3|max:20',
+            'cpf' => 'unique:usuarios|max:20|',
+            'veiculo_id' => 'numeric',
+        
+        ],[
+             'nome.required' => 'nome é obrigatório.', 
+             'nome.min' => 'Minimo de 3 letras.', 
+             'nome.max' => 'Maximo de 20 letras.', 
+             'cpf.required' => 'cpf é obrigatório.', 
+             'cpf.max' => 'limite de numeros no cpf.', 
+             'cpf.unique' => 'cpf já utilizado.', 
+             'veiculo_id.numeric' => 'Por favor selecione um veiculo.', 
+             
+        ]);
+
         $usuario = Usuario::find($id);
 
         $usuario->nome = $request->nome;
         $usuario->cpf = $usuario->cpf;
-    
+        if($usuario->cpf == "" || $usuario->cpf != $usuario->cpf ){
+            return redirect()->back()->with('danger', 'CPF NÃO PREENCHIDO/DIFERENTE DA BASE');
+        }
         $usuario->update();
 
         return redirect()->back()->with('success', 'Usuario alterado com sucesso');

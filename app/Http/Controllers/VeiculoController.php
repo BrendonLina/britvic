@@ -108,6 +108,26 @@ class VeiculoController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate($request,[
+            'modelo' => 'required|min:3|max:20',
+            'marca' => 'min:3|max:20|required',
+            'ano' => 'numeric|required',
+            'placa' => 'required'
+        
+        ],[
+             'modelo.required' => 'modelo é obrigatório.', 
+             'modelo.min' => 'Minimo de 3 letras.', 
+             'modelo.max' => 'Maximo de 20 letras.', 
+             'marca.required' => 'marca é obrigatório.', 
+             'marca.max' => 'limite maximo de 20 caracteres.', 
+             'marca.min' => 'minimo de 3 caracteres.', 
+             'placa.required' => 'Por favor digite a placa.',
+             'ano.required' => 'ano é obrigatório.',
+             'ano.numeric' => 'selecione uma data.', 
+             
+        ]);
+
         $veiculo = Veiculo::find($id);
 
         $veiculo->modelo = $request->modelo;

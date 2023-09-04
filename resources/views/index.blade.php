@@ -14,7 +14,11 @@
     </div>
 
     <div class="menu-top">
+        @if(!auth()->check())
         <a href="{{route('login')}}">Login</a>
+        @else
+        <a href="{{route('dashboard')}}">Dashboard</a>
+        @endif
         <a href="{{route('alugar.veiculo')}}">Alugar um carro</a>
     </div>   
 </nav>

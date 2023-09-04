@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
               {{session('success')}}
           </div>
       @endif
-      
+    @if(count($usuarios) > 0)
     @foreach($usuarios as $usuario)
         <form method="GET" action="/editarusuario/{{ $usuario->id }}">
             @csrf
@@ -49,5 +49,29 @@
                     </tbody>
                 </table>
     @endforeach
+    @else
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Deletar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">--</th>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+
+    @endif
+    <a href="{{route('dashboard')}}">Voltar</a>
 </body>
 </html>

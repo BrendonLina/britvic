@@ -20,7 +20,7 @@
               {{session('success')}}
           </div>
       @endif
-      
+    @if(count($veiculos) > 0)
     @foreach($veiculos as $veiculo)
         <form method="GET" action="/editarveiculo/{{ $veiculo->id }}">
             @csrf
@@ -49,5 +49,28 @@
                     </tbody>
                 </table>
     @endforeach
+    @else
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Deletar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">--</th>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+
+    @endif
+    <a href="{{route('dashboard')}}">Voltar</a>
 </body>
 </html>
