@@ -57,7 +57,7 @@
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Cadastrar</button>
-          <a href="{{route('dashboard')}}">voltar</a>
+          <a href="{{route('login')}}">voltar</a>
         </div>
       </form>
     </div>

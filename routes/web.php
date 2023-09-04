@@ -17,14 +17,16 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', [VeiculoController::class, 'index']);
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::post('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
-Route::get('/dashboard', [LoginController::class, 'index'])->name('dashboard');
-// Route::middleware(['auth'])->group(function () {
 
-//     Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
-// });
+Route::get('/alugarveiculo', [VeiculoController::class, 'alugarVeiculo'])->name('alugar.veiculo');
+Route::put('/alugarveiculo/{id}', [VeiculoController::class, 'alugarVeiculoStore'])->name('alugar.veiculo.store');
+
+Route::post('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
+    
+Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
+
 Route::get('/cadastrarveiculo', [VeiculoController::class, 'cadastrarVeiculo'])->name('cadastrar.veiculo');
 Route::post('/cadastrarveiculo', [VeiculoController::class, 'store'])->name('cadastrar.veiculo');
 Route::get('/listarveiculo', [VeiculoController::class, 'show'])->name('listar.veiculos');
@@ -39,6 +41,5 @@ Route::get('/editarusuario/{id}', [UsuarioController::class, 'edit'])->name('edi
 Route::put('/editarusuario/{id}', [UsuarioController::class, 'update'])->name('editar.usuario.store');
 Route::delete('/deletarusuario/{id}', [UsuarioController::class, 'destroy']);
 
-Route::get('/alugarveiculo', [VeiculoController::class, 'alugarVeiculo'])->name('alugar.veiculo');
-Route::put('/alugarveiculo/{id}', [VeiculoController::class, 'alugarVeiculoStore'])->name('alugar.veiculo.store');
 
+// Route::middleware(['auth','web'])->group(function () {});

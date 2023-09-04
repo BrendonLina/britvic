@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row justify-content-center align-items-center vh-100">
             <div class="col-auto w-50 form-medico">
-                <form action="{{route('dashboard')}}" method="post">
+                <form action="{{route('dashboard')}}" method="POST">
                     @csrf
 
                     <h3 class="row justify-content-center align-items-center">Login</h3>

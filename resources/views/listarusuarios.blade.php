@@ -72,6 +72,6 @@
       </table>
 
     @endif
-    <a href="{{route('dashboard')}}">Voltar</a>
+    <a href="{{route('login')}}">Voltar</a>
 </body>
 </html>

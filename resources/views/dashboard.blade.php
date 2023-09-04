@@ -8,6 +8,9 @@
     <title>Dashboard</title>
 </head>
 <body>
+  @if(session()->has('success'))
+    {{session()->get('success')}}
+  @endif
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/dashboard">BRITVIC</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
@@ -44,23 +47,3 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-
-
-{{-- <h4>DASHBOARD</h4>
-@if(session()->has('success'))
-    {{session()->get('success')}}
-@endif
-
-@if(auth()->check())
-    <p>Logado</p>
-@endif
-
-<a href="{{route('cadastrar.veiculo')}}">Cadastrar veiculo</a>
-<a href="{{route('listar.veiculos')}}">Veiculo</a>
-<a href="{{route('listar.usuarios')}}">Usuarios Cadastrados</a>
-<a href="{{route('cadastrar.usuario')}}">Cadastrar usuario</a>
-
-<a href="{{route('logout')}}">Sair</a> --}}

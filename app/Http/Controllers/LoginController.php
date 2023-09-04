@@ -3,62 +3,64 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index(){
-
-        if(Auth::check()){
-
-            return view('dashboard');
-        }
-        return view('login');
-    }
-
-    public function dashboard(Request $request){
-
-        $this->validate($request,[
-            'email' => 'required',
-            'password' => 'required',
+    public function login(Request $request){
         
-        ],[
-             'email.required' => 'nome é obrigatório.', 
-             'password.required' => 'Senha é obrigatoria.', 
-             
-        ]);
-
-
-        $credenciais = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
-        ]);
-
-
-        if(Auth::attempt($credenciais)){
-
-            $request->session()->regenerate();
-
-            if(Auth::check()){
-
-                return view('dashboard');
-            }
+        // if(Auth::check()){
             
-            // return redirect()->intended('dashboard');
+        //     return view('dashboard');
+        // }
 
+        if(session()->has('logado')){
             return view('dashboard');
-            
-        } else{
-
-            return redirect()->back()->with('danger', 'Email ou senha inválida.');
-    
         }
 
+        return view('login');
+        
     }
+
+    public function dashboard(Request $request)
+    {
+    
+
+    $credentials = $request->validate([
+        'email' => 'required', 'email',
+        'password' => 'required',
+    ],[
+        'email.required' => 'email é obrigatório.', 
+        'password.required' => 'Senha é obrigatoria.', 
+        
+    ]);
+
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        $request->session()->put("logado",[
+            'logado' => $credentials,  
+        ]);
+        // return redirect()->intended('dashboard');
+        return view('dashboard', compact('credentials'));
+    }
+
+    if(!auth()->check()){
+        return redirect()->route('login');
+    }
+    else{
+        return view('dashboard');
+    }
+
+    return redirect()->back()->with('danger', 'Email ou senha inválida.');
+}
+
+    
 
     public function logout()
     {
-        auth()->logout();
+        // auth()->logout();
+        session()->forget('logado');
 
         return view('index');
     }
