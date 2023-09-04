@@ -59,7 +59,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        // auth()->logout();
+        auth()->logout();
         session()->forget('logado');
 
         return view('index');
